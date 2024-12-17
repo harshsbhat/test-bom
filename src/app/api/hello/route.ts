@@ -1,6 +1,13 @@
-export const dynamic = 'force-dynamic';
-export const preferredRegion = ["bom1"];
+export const runtime = 'edge'; // 'nodejs' is the default
+// execute this function on iad1 or hnd1, based on the connecting client location
+export const preferredRegion = ['bom1'];
+export const dynamic = 'force-dynamic'; // no caching
  
 export function GET() {
-  return new Response(`Hello from ${process.env.VERCEL_REGION}`);
+  return new Response(
+    `I am an Edge Function! (executed on ${process.env.VERCEL_REGION})`,
+    {
+      status: 200,
+    },
+  );
 }
